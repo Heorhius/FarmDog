@@ -1,5 +1,7 @@
 package com.kaptsiug.project.model.dog;
 
+import com.kaptsiug.project.model.Aviary;
+
 public class Dog {
 
     private String name;
@@ -12,22 +14,20 @@ public class Dog {
     public Dog(String name, int age, boolean isHungry, boolean isHealthy, boolean isTrained) {
         this.name = name;
         this.age = age;
-        this.lifeCycle = getLifeCycle(this.age);
+        setLifeCycle();
         this.isHungry = isHungry;
         this.isHealthy = isHealthy;
         this.isTrained = isTrained;
     }
 
-    private static LifeCycle getLifeCycle(int age) {
-        LifeCycle lifeCycle = null;
-        if (age >= 0 && age <= 2) {
-            lifeCycle = LifeCycle.YOUNG;
-        } else if (age > 2 && age <= 8) {
-            lifeCycle = LifeCycle.ADULT;
-        } else if (age > 8 && age <= 21) {
-            lifeCycle = LifeCycle.OLD;
+    private void setLifeCycle() {
+        if (this.age >= 0 && this.age <= 2) {
+            this.lifeCycle = LifeCycle.YOUNG;
+        } else if (this.age > 2 && this.age <= 8) {
+            this.lifeCycle = LifeCycle.ADULT;
+        } else if (this.age > 8 && this.age <= 21) {
+            this.lifeCycle = LifeCycle.OLD;
         }
-        return lifeCycle;
     }
 
     public String getName() {
@@ -44,7 +44,7 @@ public class Dog {
 
     public void setAge(int age) {
         this.age = age;
-        this.lifeCycle = getLifeCycle(this.age);
+        setLifeCycle();
     }
 
     public LifeCycle getLifeCycle() {

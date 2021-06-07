@@ -1,5 +1,7 @@
 package com.kaptsiug.project.model.employee;
 
+import com.kaptsiug.project.model.dog.Dog;
+
 public class Trainer extends Employee {
 
     public Trainer(String name, String surname, Profession profession) {
@@ -7,7 +9,8 @@ public class Trainer extends Employee {
     }
 
     @Override
-    public void work() {
+    public void work(Dog dog) {
         System.out.println("Trainer is training the dog");
+        dog.setTrained(true);
     }
 }

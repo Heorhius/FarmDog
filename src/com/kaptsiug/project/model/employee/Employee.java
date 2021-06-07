@@ -1,5 +1,7 @@
 package com.kaptsiug.project.model.employee;
 
+import com.kaptsiug.project.model.dog.Dog;
+
 import java.util.Objects;
 
 public abstract class Employee {
@@ -14,7 +16,7 @@ public abstract class Employee {
         this.profession = profession;
     }
 
-    public abstract void work();
+    public abstract void work(Dog dog);
 
     public String getName() {
         return name;

@@ -1,8 +1,6 @@
 package com.kaptsiug.project.logic;
 
-import com.kaptsiug.project.model.employee.Employee;
-import com.kaptsiug.project.model.employee.Profession;
-import com.kaptsiug.project.model.employee.Vet;
+import com.kaptsiug.project.model.employee.*;
 
 public class EmployeeFactory {
     public static Employee create(String name, String surname, Profession profession) {
@@ -13,10 +11,12 @@ public class EmployeeFactory {
                 break;
             }
             case COOK: {
-                employee = new Vet(name, surname, Profession.COOK);
+                employee = new Cook(name, surname, Profession.COOK);
+                break;
             }
             case TRAINER: {
-                employee = new Vet(name, surname, Profession.TRAINER);
+                employee = new Trainer(name, surname, Profession.TRAINER);
+                break;
             }
 
         }

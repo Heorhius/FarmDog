@@ -1,27 +1,26 @@
 package com.kaptsiug.project.model;
 
-import com.kaptsiug.project.model.dog.Dog;
-
-import java.util.List;
-
 public class Aviary {
 
     private static int lastUsedId = 0;
 
     private int id;
-    private List<Dog> dogs;
+    private boolean isCleaned;
 
-    public Aviary(List<Dog> dogs) {
+    public Aviary() {
         lastUsedId++;
         this.id = lastUsedId;
-        this.dogs = dogs;
     }
 
     public int getId() {
         return id;
     }
 
-    public List<Dog> getDogs() {
-        return dogs;
+    public boolean isCleaned() {
+        return isCleaned;
+    }
+
+    public void setCleaned(boolean cleaned) {
+        isCleaned = cleaned;
     }
 }

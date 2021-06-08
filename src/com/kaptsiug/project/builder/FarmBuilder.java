@@ -13,51 +13,47 @@ import java.util.List;
 
 public class FarmBuilder implements Builder {
 
+    private static final String MSG_CREATE_FARM = "Create a new farm";
+    private static final String MSG_CREATE_DOGS = "Create dogs";
+    private static final String MSG_CREATE_TRAINING_GROUND = "Create a training ground";
+    private static final String MSG_CREATE_EMPLOYEES = "Create employees";
     private Farm farm;
 
     @Override
     public void reset() {
-        System.out.println("Create a new farm");
+        System.out.println(MSG_CREATE_FARM);
         farm = new Farm();
     }
 
     @Override
-    public void setAviaries() {
-        System.out.println("Create an aviary with dogs");
+    public void setDogs() {
+        System.out.println(MSG_CREATE_DOGS);
         List<Dog> dogs = new ArrayList<>();
-        Dog ken = new Dog("Ken", 1, true,true,false);
-        Dog ben = new Dog("Ben", 3, true,true,false);
-        Dog sam = new Dog("Sam", 9, true,true,false);
+        dogs.add(new Dog("Ken", 1, true, true, false));
+        dogs.add(new Dog("Ben", 3, true, true, false));
+        dogs.add(new Dog("Sam", 9, true, false, false));
 
-        dogs.add(ken);
-        dogs.add(ben);
-        dogs.add(sam);
+        dogs.forEach(x -> x.setAviary(new Aviary()));
 
-        Aviary aviary = new Aviary(dogs);
-        List<Aviary> aviaries = new ArrayList<>();
-        aviaries.add(aviary);
-
-        farm.setAviaries(aviaries);
+        farm.setDogs(dogs);
     }
 
     @Override
     public void setTrainingGroup() {
-        System.out.println("Create a training group");
+        System.out.println(MSG_CREATE_TRAINING_GROUND);
         TrainingGround trainingGround = new TrainingGround();
         farm.setTrainingGround(trainingGround);
     }
 
     @Override
     public void setEmployees() {
-        System.out.println("Create employees");
+        System.out.println(MSG_CREATE_EMPLOYEES);
         List<Employee> employees = new ArrayList<>();
-        Employee cook = EmployeeFactory.create("John","Jonson", Profession.COOK);
-        Employee trainer = EmployeeFactory.create("John","Jonson", Profession.TRAINER);
-        Employee vet = EmployeeFactory.create("John","Jonson", Profession.VET);
-
-        employees.add(cook);
-        employees.add(trainer);
-        employees.add(vet);
+        employees.add(EmployeeFactory.create("Nick", "Jonson", Profession.COOK));
+        employees.add(EmployeeFactory.create("John", "Buffet", Profession.TRAINER));
+        employees.add(EmployeeFactory.create("Mike", "Robinson", Profession.VET));
+        employees.add(EmployeeFactory.create("Carl", "Lesson", Profession.CLEANER));
+        employees.add(EmployeeFactory.create("Paul", "Woker", Profession.POLICEMAN));
 
         farm.setEmployees(employees);
     }

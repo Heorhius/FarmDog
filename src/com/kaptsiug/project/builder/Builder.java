@@ -4,7 +4,7 @@ public interface Builder {
 
     void reset();
 
-    void setAviaries();
+    void setDogs();
 
     void setTrainingGroup();
 

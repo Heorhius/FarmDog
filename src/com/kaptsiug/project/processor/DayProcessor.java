@@ -2,77 +2,55 @@ package com.kaptsiug.project.processor;
 
 import com.kaptsiug.project.builder.Builder;
 import com.kaptsiug.project.builder.FarmBuilder;
-import com.kaptsiug.project.logic.DogAction;
-import com.kaptsiug.project.logic.Eating;
-import com.kaptsiug.project.logic.EmployeeFactory;
-import com.kaptsiug.project.logic.Training;
-import com.kaptsiug.project.model.Aviary;
+import com.kaptsiug.project.logic.action.*;
 import com.kaptsiug.project.model.Farm;
-import com.kaptsiug.project.model.TrainingGround;
 import com.kaptsiug.project.model.dog.Dog;
 import com.kaptsiug.project.model.employee.Employee;
-import com.kaptsiug.project.model.employee.Profession;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DayProcessor {
 
+    private static final String MSG_START_DAY = "Start of the day...";
+    private static final String MSG_END_DAY = "...End of the day";
+    private static final String MSG_START_INITIALIZATION = "Start of initialization...";
+    private static final String MSG_END_INITIALIZATION = "...End of initialization";
+
     public void liveDay(Farm farm) {
-        System.out.println("Start of the day...");
-        List<Dog> dogsInAction = new ArrayList<>();
+        System.out.println(MSG_START_DAY);
+        List<Dog> dogsInAction = farm.getDogs();
         List<Employee> employeesInAction = farm.getEmployees();
 
-        for(Aviary aviary : farm.getAviaries()) {
-            dogsInAction.addAll(aviary.getDogs());
-        }
-
         DogAction dogAction = new Eating();
+        dogAction.action(dogsInAction, employeesInAction);
+
+        dogAction = new Cleaning();
+        dogAction.action(dogsInAction, employeesInAction);
+
+        dogAction = new Treatment();
         dogAction.action(dogsInAction, employeesInAction);
 
         dogAction = new Training();
         dogAction.action(dogsInAction, employeesInAction);
 
-        System.out.println("...End of the day");
+        dogAction = new Eating();
+        dogAction.action(dogsInAction, employeesInAction);
+
+        System.out.println(MSG_END_DAY);
     }
 
     public Farm init() {
-        System.out.println("Start of initialization...");
+        System.out.println(MSG_START_INITIALIZATION);
 
         Builder builder = new FarmBuilder();
         builder.reset();
-        builder.setAviaries();
+        builder.setDogs();
         builder.setEmployees();
         builder.setTrainingGroup();
 
-        System.out.println("...End of initialization");
+        System.out.println(MSG_END_INITIALIZATION);
 
-        return ((FarmBuilder)builder).getResult();
-
-//        List<Dog> dogs = new ArrayList<>();
-//        Dog ken = new Dog("Ken", 1, true,true,false);
-//        Dog ben = new Dog("Ben", 3, true,true,false);
-//        Dog sam = new Dog("Sam", 9, true,true,false);
-//
-//        dogs.add(ken);
-//        dogs.add(ben);
-//        dogs.add(sam);
-//
-//        List<Aviary> aviaries = new ArrayList<>();
-//        Aviary aviary = new Aviary(dogs);
-//        aviaries.add(aviary);
-//
-//        TrainingGround trainingGround = new TrainingGround();
-//
-//        List<Employee> employees = new ArrayList<>();
-//        Employee cook = EmployeeFactory.create("Kevin","Tomson", Profession.COOK);
-//        Employee trainer = EmployeeFactory.create("John","Jonson", Profession.TRAINER);
-//        Employee vet = EmployeeFactory.create("Mike","Amber", Profession.VET);
-//
-//        employees.add(cook);
-//        employees.add(trainer);
-//        employees.add(vet);
-//
-//        return new Farm(aviaries, trainingGround, employees);
+        return ((FarmBuilder) builder).getResult();
     }
+
 }

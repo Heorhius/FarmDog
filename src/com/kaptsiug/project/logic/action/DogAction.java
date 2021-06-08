@@ -1,4 +1,4 @@
-package com.kaptsiug.project.logic;
+package com.kaptsiug.project.logic.action;
 
 import com.kaptsiug.project.model.dog.Dog;
 import com.kaptsiug.project.model.employee.Employee;

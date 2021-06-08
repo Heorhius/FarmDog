@@ -1,9 +1,10 @@
 package com.kaptsiug.project.model.employee;
 
 import com.kaptsiug.project.model.dog.Dog;
-import com.kaptsiug.project.model.dog.LifeCycle;
 
 public class Cook extends Employee {
+
+    private static final String MSG_EATING = "The cook %s is feeding the dog %s with a portion of %.1f kg.\n";
 
     public Cook(String name, String surname, Profession profession) {
         super(name, surname, profession);
@@ -11,9 +12,7 @@ public class Cook extends Employee {
 
     @Override
     public void work(Dog dog) {
-        System.out.println("Cook is feeding the dog");
-        System.out.printf("Dog %s is eating %f", dog.getName(), dog.getLifeCycle().getPortion());
+        System.out.printf(MSG_EATING, this.getName(), dog.getName(), dog.getLifeCycle().getPortion());
         dog.setHungry(false);
-
     }
 }

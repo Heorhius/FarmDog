@@ -18,6 +18,14 @@ public class EmployeeFactory {
                 employee = new Trainer(name, surname, Profession.TRAINER);
                 break;
             }
+            case CLEANER: {
+                employee = new Cleaner(name, surname, Profession.CLEANER);
+                break;
+            }
+            case POLICEMAN: {
+                employee = new Policeman(name, surname, Profession.POLICEMAN);
+                break;
+            }
 
         }
         return employee;

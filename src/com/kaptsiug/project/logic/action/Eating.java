@@ -1,4 +1,4 @@
-package com.kaptsiug.project.logic;
+package com.kaptsiug.project.logic.action;
 
 import com.kaptsiug.project.model.dog.Dog;
 import com.kaptsiug.project.model.employee.Employee;
@@ -13,8 +13,6 @@ public class Eating implements DogAction{
     public void action(List<Dog> dogs, List<Employee> employees) {
         List<Dog> hungryDogs = dogs.stream().filter(Dog::getHungry).collect(Collectors.toList());
         Employee employee = employees.stream().filter(x -> x.getProfession().equals(Profession.COOK)).findFirst().get();
-        for(Dog dog : hungryDogs) {
-            employee.work(dog);
-        }
+        hungryDogs.forEach(employee::work);
     }
 }

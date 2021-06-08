@@ -10,6 +10,7 @@ public class Dog {
     private boolean isHungry;
     private boolean isHealthy;
     private boolean isTrained;
+    private Aviary aviary;
 
     public Dog(String name, int age, boolean isHungry, boolean isHealthy, boolean isTrained) {
         this.name = name;
@@ -74,4 +75,13 @@ public class Dog {
     public void setTrained(boolean trained) {
         isTrained = trained;
     }
+
+    public Aviary getAviary() {
+        return aviary;
+    }
+
+    public void setAviary(Aviary aviary) {
+        this.aviary = aviary;
+    }
+
 }
